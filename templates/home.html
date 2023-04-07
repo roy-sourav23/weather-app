@@ -1,0 +1,81 @@
+{% extends "_base.html" %}
+
+{% block title %}
+{{location_name}} | Weather
+{% endblock title %}
+
+{% block content %}
+
+<section class="container d-flex justify-content-center mt-3">
+    <div class="container card custom-card-width m-3 p " style="width: 85%;">
+        <!-- <img src="..." alt="..."> -->
+        <span class="card-text pt-3">Current Weather</span>
+        <span class="card-text position-absolute  pr-2 pt-3" style="right: 5%;">{{localtime}}</span>
+        <hr />
+        <div class="row pb-3">
+
+
+            <div class="col-sm-6  justify-content-center" style="overflow: auto;">
+                <div class="col-lg-7 col-md-12 m  mb-0 p-1" style="float: left; width: 50%;">
+                    <!-- Left column content here -->
+                    {% if is_day %}
+                    <span style="margin: 0;">
+                        <i class="bi bi-brightness-high-fill" style="color:orange; font-size: 3rem"></i>
+                    </span>
+                    {% else %}
+                    <span style="margin: 0;">
+                        <i class="bi bi-moon-stars" style="color:gray; font-size: 3rem"></i>
+                    </span>
+                    {% endif%}
+
+                </div>
+                <div style="float: left; width: 50%;">
+                    <span class="card-text" style="font-size: 200%;">{{current_temp}}&deg;C</span>
+                </div>
+                <p class="p-3" style="font-size: 150%;">{{weather}}</p>
+            </div>
+
+
+            <div class="col-lg-5 col-md-12 d-none d-md-block pb-3">
+                <!-- Right column content here -->
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Air Quality
+                        <span class="position-absolute  pr-2" style="right: 20%;">Good</span>
+                    </li>
+                    <li class="list-group-item">Wind
+                        <span class="position-absolute  pr-2" style="right: 20%;">{{wind_dir}} {{wind_kph}}
+                            Km/h</span>
+                    </li>
+                    <li class="list-group-item">Wind Gusts
+                        <span class="position-absolute pr-2" style="right: 20%;">{{gust_kph}} Km/h</span>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+
+        <div class="position-relative">
+            <span class="position-absolute bottom-0 end-0 pb-2">
+                <a class="text-uppercase font-weight-bold text-decoration-none" style="color: black;"
+                    href="{% url 'detail_report' %}?search={{ location_name }}">
+                    <span class="text ">More Details</span>
+                    <svg class="icon-arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                        viewBox="0 0 18 18">
+                        <defs>
+                            <path id="a"
+                                d="m8.495.505 5 5v.99l-5 5-.99-.99 3.805-3.806L0 6.7V5.3l11.31-.001-3.805-3.804.99-.99z">
+                            </path>
+                        </defs>
+                        <use fill="#000" fill-rule="nonzero" xlink:href="#a" transform="translate(2 3)"></use>
+                    </svg>
+            </span>
+            </a>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+{% endblock content %}
