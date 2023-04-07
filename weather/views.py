@@ -11,8 +11,7 @@ class HomepageView(TemplateView):
 
     def dispatch(self, request, *args, **kwargs):
         # retrieve remote ip address
-        print("request:" + str(request.META))
-        remote_addr = request.META["HTTP_TRUE_CLIENT_IP"]
+        remote_addr = request.META["HTTP_TRUE_CLIENT_IP"]  # Only for render.com
         # Pass the IP to weather api and get weather info
         self.weather = self.ip_to_weather(remote_addr)
 
